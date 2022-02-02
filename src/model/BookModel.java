@@ -9,6 +9,10 @@ public class BookModel {
 	private int bookCost;
 	private String bookImageUrl;
 	
+	public BookModel() {
+		super();
+	}
+	
 	// constructor
 	public BookModel(int bookId, String bookTitle, String bookAuthor, String bookGenre, int bookCost,
 			String bookImageUrl) {
