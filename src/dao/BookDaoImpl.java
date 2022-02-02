@@ -37,9 +37,16 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public BookModel updateBook(BookModel bookModel) {
-		// TODO Auto-generated method stub
-		return null;
+	public BookModel updateBookCost(BookModel bookModel) {
+		// loop through list and find where bookId is equal
+		for(int i = 0; i < allBooks.size(); i++) {
+			if(allBooks.get(i).getBookId() == bookModel.getBookId()) {
+				allBooks.set(i, bookModel);
+				
+			}
+		}
+		// return updated book
+		return bookModel;
 	}
 
 	@Override
@@ -55,6 +62,20 @@ public class BookDaoImpl implements BookDao {
 			}
 		}
 		// return book that was removed, or null
+		return returnBookModel;
+	}
+
+	@Override
+	public BookModel fetchOneBook(int bookId) {
+		
+		BookModel returnBookModel = null;
+		
+		for(int i = 0; i < allBooks.size(); i++) {
+			if(allBooks.get(i).getBookId() == bookId) {
+				returnBookModel = allBooks.get(i);
+			}
+		}
+		
 		return returnBookModel;
 	}
 
