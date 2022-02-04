@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import model.BookModel;
@@ -12,8 +13,10 @@ public class BookDaoImpl implements BookDao {
 	
 
 	public BookDaoImpl() {
-		allBooks = new ArrayList<BookModel>();
+		
 		// create and add three BookModels
+		allBooks = new ArrayList<BookModel>();
+		
 		allBooks.add(new BookModel(101, "Harry Potter and the Chamber of Secrets", "J.K. Rowlling", "Fiction", 40, ""));
 		allBooks.add(new BookModel(102, "Harry Potter and the Goblet of Fire", "J.K. Rowlling", "Fiction", 35, ""));
 		allBooks.add(new BookModel(103, "Harry Potter and the Half Blood Prince", "J.K. Rowlling", "Fiction", 44, ""));
@@ -31,6 +34,9 @@ public class BookDaoImpl implements BookDao {
 		
 		// set new ID
 		bookModel.setBookId(newBookId);
+		
+		// add book to list
+		allBooks.add(bookModel);
 		
 		// return new book with all info including ID
 		return bookModel;
@@ -70,11 +76,30 @@ public class BookDaoImpl implements BookDao {
 		
 		BookModel returnBookModel = null;
 		
-		for(int i = 0; i < allBooks.size(); i++) {
-			if(allBooks.get(i).getBookId() == bookId) {
-				returnBookModel = allBooks.get(i);
+		// iterate through list and find specific bookId using for loop
+//		for(int i = 0; i < allBooks.size(); i++) {
+//			if(allBooks.get(i).getBookId() == bookId) {
+//				returnBookModel = allBooks.get(i);
+//			}
+//		}
+		
+		// iterate using an iterator
+		Iterator<BookModel> itr = allBooks.iterator();
+		
+		// loop through while there is an element
+		while(itr.hasNext()) {
+			// return the next element
+			BookModel book = itr.next();
+			
+			if(book.getBookId() == bookId) {
+				returnBookModel = book;
 			}
 		}
+		
+		// iterate ArrayList using enhanced for loop
+		
+		// iterating ArrayList using forEach <-- most frequently used
+		
 		
 		return returnBookModel;
 	}
